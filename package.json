@@ -1,6 +1,6 @@
 {
-  "name": "loops",
-  "version": "1.0.0",
+  "name": "gi-loops",
+  "version": "1.0.5",
   "description": "Looping utility",
   "main": "index.js",
   "scripts": {
@@ -14,9 +14,9 @@
     "loops"
   ],
   "author": "GearIntellix",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/GearIntelligent/loops/issues"
+    "url": "https://github.com/GearIntelligent/gi-loops/issues"
   },
-  "homepage": "https://github.com/GearIntelligent/loops#readme"
+  "homepage": "https://github.com/GearIntelligent/gi-loops#readme"
 }

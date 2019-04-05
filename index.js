@@ -28,17 +28,23 @@ const xLoop = (arr, fn, done) => {
         let iy = 0;
         const result = {};
         const blacklist = [];
+        let doneCalled = false;
 
         getKeys(arr).forEach(i => {
             ((val, ix) => {
-                const cbx = res => {
+                const cbx = (res, con) => {
                     if (blacklist.indexOf(ix) >= 0) return false;
                     blacklist.push(ix);
 
                     if (res !== undefined) result[ix] = res;
                     iy += 1;
 
-                    if (iy === len) done(result, iy);
+                    if (iy === len || con) {
+                        if (doneCalled) return false;
+                        doneCalled = true;
+                        
+                        done(result, iy, con !== false);
+                    }
                     return true;
                 }
                 if (fn(cbx, val, ix, arr) === false) cbx(undefined);
