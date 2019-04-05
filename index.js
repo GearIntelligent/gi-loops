@@ -59,10 +59,11 @@ module.exports.xLoop = xLoop;
 const xLoopEx = (arr, fn) => {
     return new Promise((resolve, reject) => {
         xLoop(arr, fn, (data, length, result) => {
-            const ndata = data || {};
+            const ndata = Object.keys({}, data || {});
             ndata._length = length;
             ndata._result = result;
-            ndata._last = Object.keys(ndata).length > 0 ? ndata[Object.keys(ndata).pop()] : null;
+            ndata._lastKey = Object.keys(ndata).length > 0 ? Object.keys(data).pop() : null;
+            ndata._lastValue = ndata._lastKey !== null ? ndata[ndata._lastKey] : null;
 
             if (result) resolve(ndata);
             else reject(ndata);
@@ -127,10 +128,10 @@ module.exports.yLoop = yLoop;
 const yLoopEx = (arr, fn, silent) => {
     return new Promise((resolve, reject) => {
         yLoop(arr, fn, (data, result, length) => {
-            const ndata = data || {};
+            const ndata = Object.assign({}, data || {});
             ndata._length = length;
             ndata._result = result;
-            ndata._lastKey = Object.keys(ndata).length > 0 ? Object.keys(ndata).pop() : null;
+            ndata._lastKey = Object.keys(ndata).length > 0 ? Object.keys(data).pop() : null;
             ndata._lastValue = ndata._lastKey !== null ? ndata[ndata._lastKey] : null;
 
             if (result || silent === true) resolve(ndata);
